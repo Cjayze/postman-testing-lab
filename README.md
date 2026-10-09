@@ -64,12 +64,16 @@ Collection đã được chạy bằng Newman. Kết quả chi tiết được l
 **Tổng kết:** 6 request, 12 assertion đạt, 0 assertion lỗi trong lần chạy Newman gần nhất.
 
 ## 8. Hình ảnh kết quả trên Postman
-
-Sau khi import phiên bản mới và chạy đủ sáu request trên Postman Desktop/Web, chụp một ảnh Collection Runner thể hiện danh sách request và kết quả tổng thể. Lưu ảnh thật tại `screenshots/collection-run.png`, rồi bỏ dấu chú thích để hiện ảnh trong README:
-
-```markdown
-<!-- ![Kết quả chạy collection trên Postman](screenshots/collection-run.png) -->
-```
+-Lấy bài viết theo ID
+<img width="1916" height="820" alt="image" src="https://github.com/user-attachments/assets/1894c9d2-d03a-48b9-a4e4-f84b5a1334f6" />
+-Lọc bài viết theo người dùng
+<img width="1895" height="752" alt="image" src="https://github.com/user-attachments/assets/f18eb2cf-bd66-4ac1-8940-2098ced4f761" /
+-Tạo bài viết giả lập
+<img width="1890" height="757" alt="image" src="https://github.com/user-attachments/assets/db983900-e9e9-4bd3-99c8-25e61ee3ad7f" />
+-Cập nhật bài viết giả lập
+<img width="1917" height="790" alt="image" src="https://github.com/user-attachments/assets/e49ef042-3abb-400c-9fa7-f1ca3789bb65" />
+-xóa bài viết giả lập
+<img width="1892" height="758" alt="image" src="https://github.com/user-attachments/assets/a09030f3-e748-40cf-abd1-85e50bac1c60" />
 
 ## 9. Nhận xét
 
