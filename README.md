@@ -24,7 +24,7 @@
 
 Collection Postman nằm tại [`postman/LAB7.postman_collection.json`](postman/LAB7.postman_collection.json); environment mẫu nằm tại [`postman/LAB7.postman_environment.json`](postman/LAB7.postman_environment.json).
 
-Collection gồm ba request:
+Collection gồm bốn request:
 
 | Request | Mục đích | Kết quả mong đợi |
 | --- | --- | --- |
@@ -46,31 +46,31 @@ Mỗi request có các kiểm tra trong tab **Scripts > Post-response** (hoặc 
 
 ## 6. Báo cáo kết quả
 
-Collection chứa các assertion có thể chạy lại trực tiếp trong Postman. Sau khi chạy, ghi kết quả thực tế vào bảng dưới đây; không điền kết quả dự kiến thay cho kết quả đã chạy.
+Collection đã được chạy bằng Newman (Postman CLI runtime) với environment mẫu. Lần chạy thực tế hoàn tất thành công, gồm 1 iteration, 4 request, 8 assertion đạt và 0 assertion thất bại. Tệp JSON kết quả được lưu tại [`results/newman-run.json`](results/newman-run.json).
 
 | Request | Số assertion đạt | Số assertion thất bại | Kết luận |
 | --- | ---: | ---: | --- |
-| `GET /posts/1` | _Điền sau khi chạy_ | _Điền sau khi chạy_ | _Điền sau khi chạy_ |
-| `GET /posts?userId=1` | _Điền sau khi chạy_ | _Điền sau khi chạy_ | _Điền sau khi chạy_ |
-| `POST /posts` | _Điền sau khi chạy_ | _Điền sau khi chạy_ | _Điền sau khi chạy_ |
-| `PUT /posts/1` | _Điền sau khi chạy_ | _Điền sau khi chạy_ | _Điền sau khi chạy_ |
+| `GET /posts/1` | 2 | 0 | Đạt; HTTP 200 |
+| `GET /posts?userId=1` | 2 | 0 | Đạt; HTTP 200 |
+| `POST /posts` | 2 | 0 | Đạt; HTTP 201 |
+| `PUT /posts/1` | 2 | 0 | Đạt; HTTP 200 |
 
 ## 7. Hình ảnh minh hoạ
 
-Sau khi thực sự chạy collection, chụp màn hình Postman và lưu ảnh vào thư mục `screenshots/`. Ảnh cần thể hiện rõ tên request, status code và kết quả assertion. Nên bổ sung ít nhất:
+Lần chạy đã thực hiện bằng Newman trên dòng lệnh, không phải giao diện Postman Desktop/Web; vì vậy chưa có ảnh chụp giao diện Postman. Để bổ sung ảnh theo yêu cầu nộp bài, import collection và environment ở mục 5 vào Postman, chạy cả collection bằng **Run**, rồi chụp kết quả thật từ màn hình:
 
 1. Kết quả Collection Runner cho toàn bộ collection.
 2. Kết quả chi tiết request `GET /posts/1`.
 3. Kết quả chi tiết request `POST /posts`.
 
-Chèn ảnh vào báo cáo bằng cú pháp sau (thay ảnh mẫu bằng ảnh chụp thật):
+Lưu ảnh lần lượt vào `screenshots/collection-run.png`, `screenshots/get-post-1.png` và `screenshots/post-post.png`. Sau đó bỏ dấu chú thích ở các dòng dưới để hiện ảnh:
 
 ```markdown
-![Kết quả chạy toàn bộ collection](screenshots/collection-run.png)
-![Kết quả GET /posts/1](screenshots/get-post-1.png)
-![Kết quả POST /posts](screenshots/post-post.png)
+<!-- ![Kết quả chạy toàn bộ collection](screenshots/collection-run.png) -->
+<!-- ![Kết quả GET /posts/1](screenshots/get-post-1.png) -->
+<!-- ![Kết quả POST /posts](screenshots/post-post.png) -->
 ```
 
 ## 8. Nhận xét
 
-_Sau khi thực hành, ghi nhận điều đã học, vấn đề gặp phải và cách xử lý._
+Qua bài thực hành, đã gửi request GET để đọc và lọc dữ liệu, POST để thử tạo mới và PUT để thử cập nhật. Các test script xác nhận status code và kiểm tra nội dung JSON trả về. JSONPlaceholder chỉ giả lập thao tác ghi; dữ liệu tạo/cập nhật không được lưu lâu dài.
