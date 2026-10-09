@@ -57,19 +57,8 @@ Collection đã được chạy bằng Newman (Postman CLI runtime) với enviro
 
 ## 7. Hình ảnh minh hoạ
 
-Lần chạy đã thực hiện bằng Newman trên dòng lệnh, không phải giao diện Postman Desktop/Web; vì vậy chưa có ảnh chụp giao diện Postman. Để bổ sung ảnh theo yêu cầu nộp bài, import collection và environment ở mục 5 vào Postman, chạy cả collection bằng **Run**, rồi chụp kết quả thật từ màn hình:
+<img width="1082" height="843" alt="image" src="https://github.com/user-attachments/assets/9a0197aa-6d34-43ab-9937-7697c79c5a1a" />
 
-1. Kết quả Collection Runner cho toàn bộ collection.
-2. Kết quả chi tiết request `GET /posts/1`.
-3. Kết quả chi tiết request `POST /posts`.
-
-Lưu ảnh lần lượt vào `screenshots/collection-run.png`, `screenshots/get-post-1.png` và `screenshots/post-post.png`. Sau đó bỏ dấu chú thích ở các dòng dưới để hiện ảnh:
-
-```markdown
-<!-- ![Kết quả chạy toàn bộ collection](screenshots/collection-run.png) -->
-<!-- ![Kết quả GET /posts/1](screenshots/get-post-1.png) -->
-<!-- ![Kết quả POST /posts](screenshots/post-post.png) -->
-```
 
 ## 8. Nhận xét
 
