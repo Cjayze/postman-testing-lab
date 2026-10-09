@@ -57,8 +57,9 @@ Collection đã được chạy bằng Newman (Postman CLI runtime) với enviro
 
 ## 7. Hình ảnh minh hoạ
 
-<img width="1082" height="843" alt="image" src="https://github.com/user-attachments/assets/9a0197aa-6d34-43ab-9937-7697c79c5a1a" />
+Ảnh tổng kết một lần chạy collection trên Postman:
 
+<img width="1082" height="843" alt="image" src="https://github.com/user-attachments/assets/9a0197aa-6d34-43ab-9937-7697c79c5a1a" />
 
 ## 8. Nhận xét
 
