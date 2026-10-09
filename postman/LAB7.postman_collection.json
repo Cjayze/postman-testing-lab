@@ -1,0 +1,204 @@
+{
+  "info": {
+    "_postman_id": "b3546c8a-4127-4df4-babb-504f0da9b2e8",
+    "name": "LAB7 - JSONPlaceholder API Testing",
+    "description": "Collection thực hành GET, POST, PUT và kiểm tra phản hồi bằng Postman Tests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://jsonplaceholder.typicode.com"
+    }
+  ],
+  "item": [
+    {
+      "name": "GET /posts/1 - Lấy bài viết theo ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/posts/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response is JSON with the expected post', function () {",
+              "    const post = pm.response.json();",
+              "    pm.expect(post.id).to.eql(1);",
+              "    pm.expect(post.userId).to.be.a('number');",
+              "    pm.expect(post.title).to.be.a('string').and.not.empty;",
+              "    pm.expect(post.body).to.be.a('string').and.not.empty;",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "GET /posts?userId=1 - Lọc bài viết theo người dùng",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/posts?userId=1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "posts"
+          ],
+          "query": [
+            {
+              "key": "userId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response contains posts for user 1 only', function () {",
+              "    const posts = pm.response.json();",
+              "    pm.expect(posts).to.be.an('array').that.is.not.empty;",
+              "    posts.forEach(function (post) {",
+              "        pm.expect(post.userId).to.eql(1);",
+              "    });",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "POST /posts - Tạo bài viết giả lập",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Bai viet thu nghiem Postman\",\n  \"body\": \"Noi dung bai viet dung de kiem thu API.\",\n  \"userId\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/posts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 201', function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test('Created post matches the submitted data', function () {",
+              "    const post = pm.response.json();",
+              "    pm.expect(post.id).to.be.a('number');",
+              "    pm.expect(post.title).to.eql('Bai viet thu nghiem Postman');",
+              "    pm.expect(post.body).to.eql('Noi dung bai viet dung de kiem thu API.');",
+              "    pm.expect(post.userId).to.eql(1);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "PUT /posts/1 - Cập nhật bài viết giả lập",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": 1,\n  \"title\": \"Bai viet da cap nhat\",\n  \"body\": \"Noi dung moi sau khi cap nhat.\",\n  \"userId\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/posts/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Updated post matches the submitted data', function () {",
+              "    const post = pm.response.json();",
+              "    pm.expect(post.id).to.eql(1);",
+              "    pm.expect(post.title).to.eql('Bai viet da cap nhat');",
+              "    pm.expect(post.body).to.eql('Noi dung moi sau khi cap nhat.');",
+              "    pm.expect(post.userId).to.eql(1);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    }
+  ]
+}
