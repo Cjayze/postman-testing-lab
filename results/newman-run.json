@@ -5,7 +5,7 @@
     },
     "item": [
       {
-        "id": "539777f7-a816-4f3a-a6c4-beaf27d0ae42",
+        "id": "64a870e7-1e78-45a2-abd2-bac947647ae0",
         "name": "GET /posts/1 - Lấy bài viết theo ID",
         "request": {
           "url": {
@@ -26,7 +26,7 @@
           {
             "listen": "test",
             "script": {
-              "id": "5c646bac-9781-4bf0-9bc7-4070cac77e84",
+              "id": "42885ce5-306a-4043-8027-cdbfaf592725",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status code is 200', function () {",
@@ -41,13 +41,13 @@
                 "    pm.expect(post.body).to.be.a('string').and.not.empty;",
                 "});"
               ],
-              "_lastExecutionId": "13e530a7-7ae8-402d-9d32-bb03024415c9"
+              "_lastExecutionId": "21dfc61e-b3b1-4bf8-831c-90598fe852ca"
             }
           }
         ]
       },
       {
-        "id": "3384b9da-0e17-4380-9389-ba3cbb6bf617",
+        "id": "767f3f66-5bd1-4a58-ba30-02db92472476",
         "name": "GET /posts?userId=1 - Lọc bài viết theo người dùng",
         "request": {
           "url": {
@@ -72,7 +72,7 @@
           {
             "listen": "test",
             "script": {
-              "id": "141450c9-e844-4e3d-ba74-5aebe990e62c",
+              "id": "5931091b-4c79-45cf-9533-86688a685f96",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status code is 200', function () {",
@@ -87,13 +87,13 @@
                 "    });",
                 "});"
               ],
-              "_lastExecutionId": "ed6eec49-8472-4ee2-b870-e2129c629204"
+              "_lastExecutionId": "8b5262fd-eab2-43db-bf56-6db3d18879bc"
             }
           }
         ]
       },
       {
-        "id": "19927dff-35cf-4b02-8b13-66fe274e473e",
+        "id": "31294450-a7e8-44d3-a99c-9ea75f4c6e52",
         "name": "POST /posts - Tạo bài viết giả lập",
         "request": {
           "url": {
@@ -128,7 +128,7 @@
           {
             "listen": "test",
             "script": {
-              "id": "45bbe084-1714-4f62-bf77-d95e822d559b",
+              "id": "632b18b8-125e-4759-aeb6-f2b9696e75e8",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status code is 201', function () {",
@@ -143,13 +143,13 @@
                 "    pm.expect(post.userId).to.eql(1);",
                 "});"
               ],
-              "_lastExecutionId": "3cfdf94a-9e9f-44ec-86a7-e1fcdafc8730"
+              "_lastExecutionId": "59641af9-c2eb-4ee6-bd06-453b22f0f16b"
             }
           }
         ]
       },
       {
-        "id": "b5cc2470-7a61-446f-8455-c7bc1d92984c",
+        "id": "f685967d-e482-45a7-95e2-2309d30dd57c",
         "name": "PUT /posts/1 - Cập nhật bài viết giả lập",
         "request": {
           "url": {
@@ -185,7 +185,7 @@
           {
             "listen": "test",
             "script": {
-              "id": "cde61cc5-baf6-4387-afa8-456ff0ea4942",
+              "id": "48192744-d4da-4b96-987b-0f8a08a0cd79",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status code is 200', function () {",
@@ -200,7 +200,100 @@
                 "    pm.expect(post.userId).to.eql(1);",
                 "});"
               ],
-              "_lastExecutionId": "08653b0d-2918-45b6-9f65-2700a828fb29"
+              "_lastExecutionId": "fd564349-aa1b-4e6c-a733-85351c27f94d"
+            }
+          }
+        ]
+      },
+      {
+        "id": "f626636b-e6d8-4cf7-99b5-6ac96e217e2a",
+        "name": "DELETE /posts/1 - Xóa bài viết giả lập",
+        "request": {
+          "url": {
+            "path": [
+              "posts",
+              "1"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "95b73a4b-89f6-4319-a8f3-e18171b6dfb8",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Status code is 200', function () {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "pm.test('Delete response is an empty JSON object', function () {",
+                "    pm.expect(pm.response.json()).to.eql({});",
+                "});"
+              ],
+              "_lastExecutionId": "0356d195-bbb6-487b-ad0f-2be8adda0efe"
+            }
+          }
+        ]
+      },
+      {
+        "id": "927b2fa5-107f-4bdf-9b74-e4f066f1cb6a",
+        "name": "GET /v1/forecast - Thời tiết hiện tại tại TP. Hồ Chí Minh",
+        "request": {
+          "url": {
+            "path": [
+              "v1",
+              "forecast"
+            ],
+            "host": [
+              "{{weatherUrl}}"
+            ],
+            "query": [
+              {
+                "key": "latitude",
+                "value": "{{latitude}}"
+              },
+              {
+                "key": "longitude",
+                "value": "{{longitude}}"
+              },
+              {
+                "key": "current",
+                "value": "temperature_2m,wind_speed_10m"
+              }
+            ],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "2befa06b-e2b9-45a3-8228-d403495f19de",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Status code is 200', function () {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "pm.test('Weather response contains current temperature and wind speed', function () {",
+                "    const weather = pm.response.json();",
+                "    pm.expect(weather.current).to.be.an('object');",
+                "    pm.expect(weather.current.temperature_2m).to.be.a('number');",
+                "    pm.expect(weather.current.wind_speed_10m).to.be.a('number');",
+                "    pm.expect(weather.current_units.temperature_2m).to.be.a('string');",
+                "});"
+              ],
+              "_lastExecutionId": "9a290b0d-6756-43ac-9f88-67320c09cf14"
             }
           }
         ]
@@ -219,7 +312,7 @@
       "name": "LAB7 - JSONPlaceholder API Testing",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
       "description": {
-        "content": "Collection thực hành GET, POST, PUT và kiểm tra phản hồi bằng Postman Tests.",
+        "content": "Thực hành API cơ bản GET, POST, PUT, DELETE, kiểm thử response và gọi API thời tiết Open-Meteo.",
         "type": "text/plain"
       }
     }
@@ -237,11 +330,26 @@
         "type": "any",
         "value": "https://jsonplaceholder.typicode.com",
         "key": "baseUrl"
+      },
+      {
+        "type": "any",
+        "value": "https://api.open-meteo.com",
+        "key": "weatherUrl"
+      },
+      {
+        "type": "any",
+        "value": "10.8231",
+        "key": "latitude"
+      },
+      {
+        "type": "any",
+        "value": "106.6297",
+        "key": "longitude"
       }
     ]
   },
   "globals": {
-    "id": "a905574c-7210-4324-8695-dc4f88bfad62",
+    "id": "58925cbc-039a-451d-b5a6-b11c89b4e3ea",
     "values": []
   },
   "run": {
@@ -252,37 +360,37 @@
         "failed": 0
       },
       "items": {
-        "total": 4,
+        "total": 6,
         "pending": 0,
         "failed": 0
       },
       "scripts": {
-        "total": 4,
+        "total": 6,
         "pending": 0,
         "failed": 0
       },
       "prerequests": {
-        "total": 4,
+        "total": 6,
         "pending": 0,
         "failed": 0
       },
       "requests": {
-        "total": 4,
+        "total": 6,
         "pending": 0,
         "failed": 0
       },
       "tests": {
-        "total": 4,
+        "total": 6,
         "pending": 0,
         "failed": 0
       },
       "assertions": {
-        "total": 8,
+        "total": 12,
         "pending": 0,
         "failed": 0
       },
       "testScripts": {
-        "total": 4,
+        "total": 6,
         "pending": 0,
         "failed": 0
       },
@@ -293,10 +401,10 @@
       }
     },
     "timings": {
-      "responseAverage": 591.5,
-      "responseMin": 70,
-      "responseMax": 820,
-      "responseSd": 304.0111017709715,
+      "responseAverage": 368.3333333333333,
+      "responseMin": 69,
+      "responseMax": 884,
+      "responseSd": 247.77924762892386,
       "dnsAverage": 0,
       "dnsMin": 0,
       "dnsMax": 0,
@@ -305,25 +413,25 @@
       "firstByteMin": 0,
       "firstByteMax": 0,
       "firstByteSd": 0,
-      "started": 1791506799430,
-      "completed": 1791506802221
+      "started": 1791508661553,
+      "completed": 1791508664368
     },
     "executions": [
       {
         "cursor": {
           "position": 0,
           "iteration": 0,
-          "length": 4,
+          "length": 6,
           "cycles": 1,
           "empty": false,
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "d5a17fe1-dd93-4db3-b5b0-9ac403c72c4e",
-          "httpRequestId": "366a0922-2c31-4c2d-89cf-9fc55ee06b3c"
+          "ref": "aa3f8124-4614-44b5-b9ba-a1d6ca19280d",
+          "httpRequestId": "adcc7738-aa57-410a-b47b-f5dd1c57e4c7"
         },
         "item": {
-          "id": "539777f7-a816-4f3a-a6c4-beaf27d0ae42",
+          "id": "64a870e7-1e78-45a2-abd2-bac947647ae0",
           "name": "GET /posts/1 - Lấy bài viết theo ID",
           "request": {
             "url": {
@@ -344,7 +452,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "5c646bac-9781-4bf0-9bc7-4070cac77e84",
+                "id": "42885ce5-306a-4043-8027-cdbfaf592725",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status code is 200', function () {",
@@ -359,7 +467,7 @@
                   "    pm.expect(post.body).to.be.a('string').and.not.empty;",
                   "});"
                 ],
-                "_lastExecutionId": "13e530a7-7ae8-402d-9d32-bb03024415c9"
+                "_lastExecutionId": "21dfc61e-b3b1-4bf8-831c-90598fe852ca"
               }
             }
           ]
@@ -397,7 +505,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "d2ae3e76-ce69-4f74-a05a-e11232c93f66",
+              "value": "d5645741-6268-45fe-bf50-938d946194fb",
               "system": true
             },
             {
@@ -419,13 +527,13 @@
           "method": "GET"
         },
         "response": {
-          "id": "bc413c46-f1ac-457c-9773-6589ce48003d",
+          "id": "597cb33e-7253-4709-a6fd-8a88abf318cf",
           "status": "OK",
           "code": 200,
           "header": [
             {
               "key": "Date",
-              "value": "Fri, 09 Oct 2026 00:46:40 GMT"
+              "value": "Fri, 09 Oct 2026 01:17:41 GMT"
             },
             {
               "key": "Content-Type",
@@ -485,7 +593,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ql4wnbw87poxefih%2BpXVhsq1zuANo%2F60GrOwYp%2BXrFDV7TMsLeLGSvjYeXlAtF6m0wsw1Vr3fLkSfcLtavm%2FXvHW6ECvImYu%2BJWBzD%2BmZ%2B0tWuRRDQgqev2QB1rVymlko375dIEZDJr0jUSaJNGK\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=M5%2BBFtXs3car415dt1SO3iZyxQtN6LRyCsbR8g%2BW7A%2BUTQp8N4dqaqi%2FOgOQx5F5m2xwsqUDmXVbjmwMa92NvSUSrVMED4emiJOVP9d7wAysGRxuyQYbIYlJNt7Loqy7OWIu0FjLCiagLNKkDnew\"}]}"
             },
             {
               "key": "Nel",
@@ -493,7 +601,7 @@
             },
             {
               "key": "Age",
-              "value": "24652"
+              "value": "26514"
             },
             {
               "key": "cf-cache-status",
@@ -509,7 +617,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a4795e9cbcd28de9-SIN"
+              "value": "a4798c109c02a1b2-SIN"
             },
             {
               "key": "alt-svc",
@@ -814,10 +922,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 702,
+          "responseTime": 291,
           "responseSize": 292
         },
-        "id": "539777f7-a816-4f3a-a6c4-beaf27d0ae42",
+        "id": "64a870e7-1e78-45a2-abd2-bac947647ae0",
         "assertions": [
           {
             "assertion": "Status code is 200",
@@ -831,15 +939,15 @@
       },
       {
         "cursor": {
-          "ref": "9105ebb5-610a-49de-b191-66a81c0085a6",
-          "length": 4,
+          "ref": "2d34c6f4-30af-4dd1-b245-796263c53e6d",
+          "length": 6,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "add5c09c-334d-45b5-8428-922d0cdcd8ba"
+          "httpRequestId": "dfc26f66-567c-40f6-97ae-612063b5eedb"
         },
         "item": {
-          "id": "3384b9da-0e17-4380-9389-ba3cbb6bf617",
+          "id": "767f3f66-5bd1-4a58-ba30-02db92472476",
           "name": "GET /posts?userId=1 - Lọc bài viết theo người dùng",
           "request": {
             "url": {
@@ -864,7 +972,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "141450c9-e844-4e3d-ba74-5aebe990e62c",
+                "id": "5931091b-4c79-45cf-9533-86688a685f96",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status code is 200', function () {",
@@ -879,7 +987,7 @@
                   "    });",
                   "});"
                 ],
-                "_lastExecutionId": "ed6eec49-8472-4ee2-b870-e2129c629204"
+                "_lastExecutionId": "8b5262fd-eab2-43db-bf56-6db3d18879bc"
               }
             }
           ]
@@ -921,7 +1029,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "38e60306-4f98-4f1e-94ea-f9f61186fd7b",
+              "value": "59d565c9-251b-46e2-a813-61a8c194b871",
               "system": true
             },
             {
@@ -943,13 +1051,13 @@
           "method": "GET"
         },
         "response": {
-          "id": "3ba26cb4-a2b3-4608-b766-513eacbad42b",
+          "id": "a8943023-1b13-4e9a-91c9-5c2652185592",
           "status": "OK",
           "code": 200,
           "header": [
             {
               "key": "Date",
-              "value": "Fri, 09 Oct 2026 00:46:40 GMT"
+              "value": "Fri, 09 Oct 2026 01:17:42 GMT"
             },
             {
               "key": "Content-Type",
@@ -1013,7 +1121,7 @@
             },
             {
               "key": "Age",
-              "value": "6040"
+              "value": "7902"
             },
             {
               "key": "cf-cache-status",
@@ -1021,7 +1129,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=xBM90S6lvUE%2FdmcGTzOsu6DIpvT1a%2FIa98r%2Blv9yuBbcullmoBX%2FwWSldQsheVkiF3Z8DM69CJOn5pH51Ro96ZRTUUkErXTKJI2KwbyUbTZxzHz8f84%2Fya78myskTg6V4kknE3JLxVb9y4FVYzgR\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=zg0uq26h3b9rSroLUlnrP%2BXUg%2B89c1NvshK8L7GSC5NOigJ2ruaTDQMCppKtW1JpoPSkCPC4CQAhgZVF2%2BRp5t%2FIykBT4%2Fe7hq5p3mDxHBGWumUGMC%2Bs%2FL7SXkQAOddKQLPBkhtla%2FXZuuHsmCl1\"}]}"
             },
             {
               "key": "Nel",
@@ -1033,7 +1141,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a4795e9e68c98de9-SIN"
+              "value": "a4798c122d42a1b2-SIN"
             },
             {
               "key": "alt-svc",
@@ -3772,10 +3880,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 70,
+          "responseTime": 69,
           "responseSize": 2726
         },
-        "id": "3384b9da-0e17-4380-9389-ba3cbb6bf617",
+        "id": "767f3f66-5bd1-4a58-ba30-02db92472476",
         "assertions": [
           {
             "assertion": "Status code is 200",
@@ -3789,15 +3897,15 @@
       },
       {
         "cursor": {
-          "ref": "dcb687ac-7bd3-4b79-8b6d-f8c5b5e44e6d",
-          "length": 4,
+          "ref": "5b7ad406-8f77-40cd-86af-e6830c3d3e09",
+          "length": 6,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "2ec5ed15-49da-4e64-8be8-49f31543cfd8"
+          "httpRequestId": "06e04f10-ef60-4441-8232-4c0649a94511"
         },
         "item": {
-          "id": "19927dff-35cf-4b02-8b13-66fe274e473e",
+          "id": "31294450-a7e8-44d3-a99c-9ea75f4c6e52",
           "name": "POST /posts - Tạo bài viết giả lập",
           "request": {
             "url": {
@@ -3832,7 +3940,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "45bbe084-1714-4f62-bf77-d95e822d559b",
+                "id": "632b18b8-125e-4759-aeb6-f2b9696e75e8",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status code is 201', function () {",
@@ -3847,7 +3955,7 @@
                   "    pm.expect(post.userId).to.eql(1);",
                   "});"
                 ],
-                "_lastExecutionId": "3cfdf94a-9e9f-44ec-86a7-e1fcdafc8730"
+                "_lastExecutionId": "59641af9-c2eb-4ee6-bd06-453b22f0f16b"
               }
             }
           ]
@@ -3888,7 +3996,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "03748718-f050-462b-9735-a58a07afe634",
+              "value": "cde65d96-07e6-4706-a890-ff0b534573bd",
               "system": true
             },
             {
@@ -3924,13 +4032,13 @@
           }
         },
         "response": {
-          "id": "d61848bd-aa1f-4c34-9c74-56c44af21b2f",
+          "id": "fced99c7-01a7-4da9-84bb-ca07ef7dfe37",
           "status": "Created",
           "code": 201,
           "header": [
             {
               "key": "Date",
-              "value": "Fri, 09 Oct 2026 00:46:41 GMT"
+              "value": "Fri, 09 Oct 2026 01:17:42 GMT"
             },
             {
               "key": "Content-Type",
@@ -3990,7 +4098,7 @@
             },
             {
               "key": "x-ratelimit-remaining",
-              "value": "3599989"
+              "value": "3599964"
             },
             {
               "key": "x-ratelimit-reset",
@@ -4002,7 +4110,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=aPVG2a8gMhZZHU08p74GdR5CzgsM9MClryjF7j6pA1L855qDEmLYG20b38MO%2B0iWpwj%2Bg94A0o7SdrBcTHVbUnIZaRMzan3nTWhKfa3Cu6kRsNEpopKcD4b%2FxUrkX6FugW1DZmop6Vc3DTqBam8L\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=sIi%2BRFslHT3Z7h0yHoeeMISQA0eYVkfNGEaAk2SRix%2BFf1izR75C%2FmzUzoZpDpOmtYPPrY2CcHYRVPWzqSoVeednNcPN3NlEgVRW5Xzn4KFC4IgPTfntq3IvG8yIFxEuUuG45O2JIulj73Ym79t0\"}]}"
             },
             {
               "key": "Nel",
@@ -4014,7 +4122,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a4795e9f5af08de9-SIN"
+              "value": "a4798c131ddda1b2-SIN"
             },
             {
               "key": "alt-svc",
@@ -4152,10 +4260,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 774,
+          "responseTime": 314,
           "responseSize": 125
         },
-        "id": "19927dff-35cf-4b02-8b13-66fe274e473e",
+        "id": "31294450-a7e8-44d3-a99c-9ea75f4c6e52",
         "assertions": [
           {
             "assertion": "Status code is 201",
@@ -4169,15 +4277,15 @@
       },
       {
         "cursor": {
-          "ref": "082db4b7-9f39-4cae-a3c6-1cbb388a4182",
-          "length": 4,
+          "ref": "8e61a41f-6822-4d1b-9440-3b61b362bee5",
+          "length": 6,
           "cycles": 1,
           "position": 3,
           "iteration": 0,
-          "httpRequestId": "3a5e7ea5-3288-4091-8ff5-a542d514b29c"
+          "httpRequestId": "cba05c9c-d19a-47e4-9dcd-dd9a1fa4397b"
         },
         "item": {
-          "id": "b5cc2470-7a61-446f-8455-c7bc1d92984c",
+          "id": "f685967d-e482-45a7-95e2-2309d30dd57c",
           "name": "PUT /posts/1 - Cập nhật bài viết giả lập",
           "request": {
             "url": {
@@ -4213,7 +4321,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "cde61cc5-baf6-4387-afa8-456ff0ea4942",
+                "id": "48192744-d4da-4b96-987b-0f8a08a0cd79",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status code is 200', function () {",
@@ -4228,7 +4336,7 @@
                   "    pm.expect(post.userId).to.eql(1);",
                   "});"
                 ],
-                "_lastExecutionId": "08653b0d-2918-45b6-9f65-2700a828fb29"
+                "_lastExecutionId": "fd564349-aa1b-4e6c-a733-85351c27f94d"
               }
             }
           ]
@@ -4270,7 +4378,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "49081fc1-4d07-4477-b6bd-5cbc3b2a9eef",
+              "value": "115b7da4-49f0-4288-b24c-5138f6c53cb9",
               "system": true
             },
             {
@@ -4306,13 +4414,13 @@
           }
         },
         "response": {
-          "id": "1622bd28-9835-4722-81d0-d016f7de607d",
+          "id": "237db524-12ff-4b34-9786-daa71ee78cf1",
           "status": "OK",
           "code": 200,
           "header": [
             {
               "key": "Date",
-              "value": "Fri, 09 Oct 2026 00:46:42 GMT"
+              "value": "Fri, 09 Oct 2026 01:17:42 GMT"
             },
             {
               "key": "Content-Type",
@@ -4364,7 +4472,7 @@
             },
             {
               "key": "x-ratelimit-remaining",
-              "value": "3599988"
+              "value": "3599963"
             },
             {
               "key": "x-ratelimit-reset",
@@ -4376,7 +4484,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=e6YGAyBQOmPL0ly1dXoEThMEIxRHlmNIOnWkAv7sIbBFZiOSAFM3eZp%2B%2FJLWw7Cc9zSsVqH3hEYut20JIfqcSB1SY%2FiAbchmcmKgDQ6AzQ4aETafFBdaL7WG%2BRXnIztlAo%2FlWCzaonBqCY8W%2BlCk\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=4Twe%2BZjdiMjfy2QO7FXb1Vkar%2F1J1rsVpfOd7XqkINrM5Z%2B4zw1In5%2F6JdOE82%2BKx9c2UXfberw7XSlGyLRk48tVDVhXrgwmDckp5GS1PuWLpoZiX5iQ6%2FC0OL9Frt6OUFwvdNVkY86grj10FdK4\"}]}"
             },
             {
               "key": "Nel",
@@ -4392,7 +4500,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a4795ea4dff78de9-SIN"
+              "value": "a4798c15c85ca1b2-SIN"
             },
             {
               "key": "alt-svc",
@@ -4512,10 +4620,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 820,
+          "responseTime": 339,
           "responseSize": 107
         },
-        "id": "b5cc2470-7a61-446f-8455-c7bc1d92984c",
+        "id": "f685967d-e482-45a7-95e2-2309d30dd57c",
         "assertions": [
           {
             "assertion": "Status code is 200",
@@ -4526,10 +4634,770 @@
             "skipped": false
           }
         ]
+      },
+      {
+        "cursor": {
+          "ref": "de0f3fde-d822-4698-ac15-6a2a31d74dac",
+          "length": 6,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "1f149513-3f19-4d04-934e-65165d29f538"
+        },
+        "item": {
+          "id": "f626636b-e6d8-4cf7-99b5-6ac96e217e2a",
+          "name": "DELETE /posts/1 - Xóa bài viết giả lập",
+          "request": {
+            "url": {
+              "path": [
+                "posts",
+                "1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "95b73a4b-89f6-4319-a8f3-e18171b6dfb8",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Delete response is an empty JSON object', function () {",
+                  "    pm.expect(pm.response.json()).to.eql({});",
+                  "});"
+                ],
+                "_lastExecutionId": "0356d195-bbb6-487b-ad0f-2be8adda0efe"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "posts",
+              "1"
+            ],
+            "host": [
+              "jsonplaceholder",
+              "typicode",
+              "com"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "bea956db-3385-498f-82b4-b8c5f07ed472",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "jsonplaceholder.typicode.com",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "a49b04d8-184e-45e1-ab71-3d88c953112e",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 09 Oct 2026 01:17:43 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "2"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+            },
+            {
+              "key": "expires",
+              "value": "-1"
+            },
+            {
+              "key": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "vary",
+              "value": "Origin, Accept-Encoding"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "x-ratelimit-limit",
+              "value": "3600000"
+            },
+            {
+              "key": "x-ratelimit-remaining",
+              "value": "3599962"
+            },
+            {
+              "key": "x-ratelimit-reset",
+              "value": "1791508735"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "Report-To",
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=hvumH6XKrfGVT4wySRRrslkUwWZBQzLjqahZrttGVwtYPHc0TTktbPWyyd7vQgG%2FlGkA69BkGkHdaWZCY3qJ%2FxvSC1gief4rXuTOZtSUQ7xBExHxrf8tQbVA9xZJoKGkw9qewPG%2BtbVMMx0HYodG\"}]}"
+            },
+            {
+              "key": "Nel",
+              "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "a4798c185acaa1b2-SIN"
+            },
+            {
+              "key": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 313,
+          "responseSize": 2
+        },
+        "id": "f626636b-e6d8-4cf7-99b5-6ac96e217e2a",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Delete response is an empty JSON object",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "acfad1fd-2a9c-497b-b278-758c9379da23",
+          "length": 6,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "8584138f-f182-45ce-8ae3-4e52950afd83"
+        },
+        "item": {
+          "id": "927b2fa5-107f-4bdf-9b74-e4f066f1cb6a",
+          "name": "GET /v1/forecast - Thời tiết hiện tại tại TP. Hồ Chí Minh",
+          "request": {
+            "url": {
+              "path": [
+                "v1",
+                "forecast"
+              ],
+              "host": [
+                "{{weatherUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "{{latitude}}"
+                },
+                {
+                  "key": "longitude",
+                  "value": "{{longitude}}"
+                },
+                {
+                  "key": "current",
+                  "value": "temperature_2m,wind_speed_10m"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2befa06b-e2b9-45a3-8228-d403495f19de",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Weather response contains current temperature and wind speed', function () {",
+                  "    const weather = pm.response.json();",
+                  "    pm.expect(weather.current).to.be.an('object');",
+                  "    pm.expect(weather.current.temperature_2m).to.be.a('number');",
+                  "    pm.expect(weather.current.wind_speed_10m).to.be.a('number');",
+                  "    pm.expect(weather.current_units.temperature_2m).to.be.a('string');",
+                  "});"
+                ],
+                "_lastExecutionId": "9a290b0d-6756-43ac-9f88-67320c09cf14"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "v1",
+              "forecast"
+            ],
+            "host": [
+              "api",
+              "open-meteo",
+              "com"
+            ],
+            "query": [
+              {
+                "key": "latitude",
+                "value": "10.8231"
+              },
+              {
+                "key": "longitude",
+                "value": "106.6297"
+              },
+              {
+                "key": "current",
+                "value": "temperature_2m,wind_speed_10m"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "dd4679be-eed8-42d6-aaf6-64f38e00b056",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "api.open-meteo.com",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "b61e5aae-2329-49b1-9ce3-05fbfdc3c75f",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 09 Oct 2026 01:17:44 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "deflate"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              108,
+              97,
+              116,
+              105,
+              116,
+              117,
+              100,
+              101,
+              34,
+              58,
+              49,
+              48,
+              46,
+              55,
+              57,
+              48,
+              56,
+              54,
+              49,
+              44,
+              34,
+              108,
+              111,
+              110,
+              103,
+              105,
+              116,
+              117,
+              100,
+              101,
+              34,
+              58,
+              49,
+              48,
+              54,
+              46,
+              54,
+              51,
+              49,
+              51,
+              44,
+              34,
+              103,
+              101,
+              110,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              116,
+              105,
+              109,
+              101,
+              95,
+              109,
+              115,
+              34,
+              58,
+              48,
+              46,
+              48,
+              56,
+              56,
+              53,
+              55,
+              50,
+              53,
+              48,
+              50,
+              49,
+              51,
+              54,
+              50,
+              51,
+              48,
+              52,
+              55,
+              44,
+              34,
+              117,
+              116,
+              99,
+              95,
+              111,
+              102,
+              102,
+              115,
+              101,
+              116,
+              95,
+              115,
+              101,
+              99,
+              111,
+              110,
+              100,
+              115,
+              34,
+              58,
+              48,
+              44,
+              34,
+              116,
+              105,
+              109,
+              101,
+              122,
+              111,
+              110,
+              101,
+              34,
+              58,
+              34,
+              71,
+              77,
+              84,
+              34,
+              44,
+              34,
+              116,
+              105,
+              109,
+              101,
+              122,
+              111,
+              110,
+              101,
+              95,
+              97,
+              98,
+              98,
+              114,
+              101,
+              118,
+              105,
+              97,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              34,
+              71,
+              77,
+              84,
+              34,
+              44,
+              34,
+              101,
+              108,
+              101,
+              118,
+              97,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              54,
+              46,
+              48,
+              44,
+              34,
+              99,
+              117,
+              114,
+              114,
+              101,
+              110,
+              116,
+              95,
+              117,
+              110,
+              105,
+              116,
+              115,
+              34,
+              58,
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              34,
+              58,
+              34,
+              105,
+              115,
+              111,
+              56,
+              54,
+              48,
+              49,
+              34,
+              44,
+              34,
+              105,
+              110,
+              116,
+              101,
+              114,
+              118,
+              97,
+              108,
+              34,
+              58,
+              34,
+              115,
+              101,
+              99,
+              111,
+              110,
+              100,
+              115,
+              34,
+              44,
+              34,
+              116,
+              101,
+              109,
+              112,
+              101,
+              114,
+              97,
+              116,
+              117,
+              114,
+              101,
+              95,
+              50,
+              109,
+              34,
+              58,
+              34,
+              194,
+              176,
+              67,
+              34,
+              44,
+              34,
+              119,
+              105,
+              110,
+              100,
+              95,
+              115,
+              112,
+              101,
+              101,
+              100,
+              95,
+              49,
+              48,
+              109,
+              34,
+              58,
+              34,
+              107,
+              109,
+              47,
+              104,
+              34,
+              125,
+              44,
+              34,
+              99,
+              117,
+              114,
+              114,
+              101,
+              110,
+              116,
+              34,
+              58,
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              54,
+              45,
+              49,
+              48,
+              45,
+              48,
+              57,
+              84,
+              48,
+              49,
+              58,
+              49,
+              53,
+              34,
+              44,
+              34,
+              105,
+              110,
+              116,
+              101,
+              114,
+              118,
+              97,
+              108,
+              34,
+              58,
+              57,
+              48,
+              48,
+              44,
+              34,
+              116,
+              101,
+              109,
+              112,
+              101,
+              114,
+              97,
+              116,
+              117,
+              114,
+              101,
+              95,
+              50,
+              109,
+              34,
+              58,
+              50,
+              54,
+              46,
+              57,
+              44,
+              34,
+              119,
+              105,
+              110,
+              100,
+              95,
+              115,
+              112,
+              101,
+              101,
+              100,
+              95,
+              49,
+              48,
+              109,
+              34,
+              58,
+              51,
+              46,
+              57,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 884,
+          "responseSize": 368
+        },
+        "id": "927b2fa5-107f-4bdf-9b74-e4f066f1cb6a",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Weather response contains current temperature and wind speed",
+            "skipped": false
+          }
+        ]
       }
     ],
     "transfers": {
-      "responseTotal": 3250
+      "responseTotal": 3620
     },
     "failures": [],
     "error": null

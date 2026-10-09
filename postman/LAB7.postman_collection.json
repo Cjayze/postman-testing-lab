@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "b3546c8a-4127-4df4-babb-504f0da9b2e8",
     "name": "LAB7 - JSONPlaceholder API Testing",
-    "description": "Collection thực hành GET, POST, PUT và kiểm tra phản hồi bằng Postman Tests.",
+    "description": "Thực hành API cơ bản GET, POST, PUT, DELETE, kiểm thử response và gọi API thời tiết Open-Meteo.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -193,6 +193,94 @@
               "    pm.expect(post.title).to.eql('Bai viet da cap nhat');",
               "    pm.expect(post.body).to.eql('Noi dung moi sau khi cap nhat.');",
               "    pm.expect(post.userId).to.eql(1);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "DELETE /posts/1 - Xóa bài viết giả lập",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/posts/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Delete response is an empty JSON object', function () {",
+              "    pm.expect(pm.response.json()).to.eql({});",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "GET /v1/forecast - Thời tiết hiện tại tại TP. Hồ Chí Minh",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{weatherUrl}}/v1/forecast?latitude={{latitude}}&longitude={{longitude}}&current=temperature_2m,wind_speed_10m",
+          "host": [
+            "{{weatherUrl}}"
+          ],
+          "path": [
+            "v1",
+            "forecast"
+          ],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "{{latitude}}"
+            },
+            {
+              "key": "longitude",
+              "value": "{{longitude}}"
+            },
+            {
+              "key": "current",
+              "value": "temperature_2m,wind_speed_10m"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Weather response contains current temperature and wind speed', function () {",
+              "    const weather = pm.response.json();",
+              "    pm.expect(weather.current).to.be.an('object');",
+              "    pm.expect(weather.current.temperature_2m).to.be.a('number');",
+              "    pm.expect(weather.current.wind_speed_10m).to.be.a('number');",
+              "    pm.expect(weather.current_units.temperature_2m).to.be.a('string');",
               "});"
             ]
           }
